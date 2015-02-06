@@ -1,0 +1,22 @@
+plot1(){
+
+  library(lubridate)
+  library(dplyr)
+  
+  temp <- read.delim("./data/household_power_consumption.txt", header = TRUE, sep = ";")
+  temp <- mutate(temp, newdate = dmy(as.character(Date)))
+  newtemp <- filter(temp, newdate >= "2007-02-01" & newdate <= "2007-02-02")
+  
+  newtemp <- mutate(newtemp, Global_active_power = as.numeric(as.character(Global_active_power)))
+  newtemp <- mutate(newtemp, Global_reactive_power = as.numeric(as.character(Global_reactive_power)))
+  newtemp <- mutate(newtemp, Voltage = as.numeric(as.character(Voltage)))
+  newtemp <- mutate(newtemp, Global_intensity = as.numeric(as.character(Global_intensity)))
+  newtemp <- mutate(newtemp, Sub_metering_1 = as.numeric(as.character(Sub_metering_1)))
+  newtemp <- mutate(newtemp, Sub_metering_2 = as.numeric(as.character(Sub_metering_2)))
+        
+  plot(newtemp$Global_active_power, type = "h")
+  
+  
+  
+  
+}
